@@ -7,6 +7,15 @@ const configureStore = (reducers = {}, preLoadedState = {}, middlewares = []) =>
   combineReducers(
     ...rootReducers,
     ...reducers
+  ),
+  preLoadedState,
+  compose(
+    applyMiddleware(
+      ...middlewares,
+      thunk,
+      ReduxLogger
+    ),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
