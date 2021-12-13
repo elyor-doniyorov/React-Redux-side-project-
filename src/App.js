@@ -1,6 +1,8 @@
 import './App.css';
+import { connect } from 'react-redux';
+import { getPosts as getPostsAction } from './redux/modules/posts';
 
-function App() {
+function App({posts, getPosts}) {
   return (
     <div className="App">
       hello
@@ -8,4 +10,7 @@ function App() {
   );
 }
 
-export default App;
+export default connect(
+  ({ posts }) => ({ posts }),
+  {getPosts: getPostsAction},
+)(App);
